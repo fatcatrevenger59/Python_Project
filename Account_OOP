@@ -26,9 +26,10 @@ class Account:
         self.balance = Balance   #ถ้าอยากกำหนดเป็นตัวเลข เอา Balance ออก แล้วใส่เป็นเลข แล้วไปลบช่อง input ฺBalance เอา
         
         current_date = date.today()
-        beginning_date = date(current_date.year,1,1)# current_date.year คือ ปี , 1 คือ เดือน , 1 คือ วัน# 
+        beginning_date = date(current_date.year,1,1)    # current_date.year คือ ปี , 1 คือ เดือน , 1 คือ วัน# 
         
-                                            #วันนี้ - วันแรกของปี 2022/1/1 หาร 365                    #อัตราดอกเบี้ยต่อปี
+        
+        #ยอดเงินดอกเบี้ยตั้งแต่ต้นปีจนวันนี้(บาท)         #วันนี้ - วันแรกของปี 2022/1/1 หาร 365               # % ของอัตราดอกเบี้ยต่อปี เทียบหาเป็นร้อยละ
         self.interest_accrued = self.balance * (abs(current_date - beginning_date).days/365) * self.interest / 100
         
         self.real_balance = self.interest_accrued + self.balance
