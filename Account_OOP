@@ -1,0 +1,41 @@
+#โปรแกรมคำนวนอัตราดอกเบี้ยบัญชีธนาคารประเภทต่างๆ
+
+from datetime import date
+
+class Account:
+
+    def __init__(self,numID):
+        self.number = numID
+        self.account_type()
+        self.interest_rate()
+        self.interest_accrued()
+    def account_type(self):
+        if str(self.number).startswith('1'):
+            self.type = 'current'
+        elif str(self.number).startswith('2'):
+            self.type = 'saving'
+    def interest_rate(self):
+        if self.type == 'current':
+            self.interest = 0  # อัตราดอกเบี้ยต่อปี
+        elif self.type == 'saving':
+            self.interest = 5 # อัตราดอกเบี้ยต่อปี
+        return self.interest
+    def interest_accrued(self):
+        
+        self.interest_rate()
+        self.balance = Balance   #ถ้าอยากกำหนดเป็นตัวเลข เอา Balance ออก แล้วใส่เป็นเลข แล้วไปลบช่อง input ฺBalance เอา
+        
+        current_date = date.today()
+        beginning_date = date(current_date.year,1,1)# current_date.year คือ ปี , 1 คือ เดือน , 1 คือ วัน# 
+        
+                                            #วันนี้ - วันแรกของปี 2022/1/1 หาร 365                    #อัตราดอกเบี้ยต่อปี
+        self.interest_accrued = self.balance * (abs(current_date - beginning_date).days/365) * self.interest / 100
+        
+        
+        
+card = int(input('CardID : '))
+Balance = int(input('ยอดเงินคงเหลือในบัญชีของท่าน : '))  #ถ้าอยากระบุยอดเงินในบัญชีเป็นตัวเลข ให้ไปแก้ที่ข้างบน
+acc1 = Account(card)
+print(f'เป็นบัญชีประเภท {acc1.type}')
+print(f'อัตราดอกเบี้ยต่อปี {acc1.interest_rate()} %')
+print(f'อัตราดอกเบี้ยรวมแล้วเป็นเงิน {acc1.interest_accrued} บาท')
